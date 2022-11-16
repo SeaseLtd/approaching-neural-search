@@ -1,11 +1,12 @@
 # approaching-neural-search
 Approaching Neural Search with Apache Solr and Open-source technologies 
+
 Tutor(s): Alessandro Benedetti
 
-#Introduction:
+# Introduction:
 Please join us as to explore this exciting new Apache Solr feature and learn how you can leverage it to improve your search experience!
 
-#Schedule:
+# Schedule:
 9:00 - 9:20 - Introduction to Semantic Search Problems (vocabulary mismatch problem, semantic similarity)
 
 9:20 - 9:40 - From Text to Vectors (Sparse vs Dense vector representation)

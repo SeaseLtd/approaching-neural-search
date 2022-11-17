@@ -27,4 +27,20 @@ Please join us as to explore this exciting new Apache Solr feature and learn how
 
 13:05 - 13:20 - Future Works
 
+# Rquirements:
 
+To replicate this work just install the requirements.txt in your python environment.
+
+e.g.
+
+using pip
+```
+pip install -r requirements.txt
+```
+
+using Conda
+```
+conda create --name approaching-neural-search-tutorial-22 --file requirements.txt
+conda activate approaching-neural-search-tutorial-22
+conda install -c conda-forge sentence-transformers | pip install sentence-transformers
+```

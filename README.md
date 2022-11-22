@@ -27,7 +27,7 @@ Please join us as to explore this exciting new Apache Solr feature and learn how
 
 13:05 - 13:20 - Future Works
 
-# Rquirements:
+# Requirements:
 
 To replicate this work just install the requirements.txt in your python environment.
 

@@ -36,6 +36,8 @@ e.g.
 using pip
 ```
 pip install -r requirements.txt
+pip install sentence-transformers
+pip install pysolr
 ```
 
 using Conda

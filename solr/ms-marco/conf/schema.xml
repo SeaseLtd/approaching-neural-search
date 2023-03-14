@@ -17,7 +17,7 @@
 -->
 <schema name="ms-marco" version="1.0">
   <fieldType name="string" class="solr.StrField" omitNorms="true" positionIncrementGap="0"/>
-  <fieldType name="knn_vector" class="solr.DenseVectorField" vectorDimension="768" stored="false" omitNorms="true"/>
+  <fieldType name="knn_vector" class="solr.DenseVectorField" vectorDimension="384" stored="false" omitNorms="true"/>
   <fieldType name="long" class="org.apache.solr.schema.LongPointField" docValues="true" omitNorms="true" positionIncrementGap="0"/>
 
   <!-- basic text field -->

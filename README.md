@@ -1,48 +1,73 @@
 # approaching-neural-search
 Approaching Neural Search with Apache Solr and Open-source technologies 
 
-Tutor(s): Alessandro Benedetti
+Tutor(s): Alessandro Benedetti and Ilaria Petreti
 
 # Introduction:
-Please join us as to explore this exciting new Apache Solr feature and learn how you can leverage it to improve your search experience!
+This is the repository for all the Solr neural search tutorial material. Here you can find everything you need to implement a simple Solr system to perform neural queries.
 
-# Schedule:
-9:00 - 9:20 - Introduction to Semantic Search Problems (vocabulary mismatch problem, semantic similarity)
-
-9:20 - 9:40 - From Text to Vectors (Sparse vs Dense vector representation)
-
-9:40 - 10:10 - How to generate vectors from text and integrate large language models with Apache Solr
-
-10:10 - 10:40 - How Approximate Nearest Neighbor (ANN) approaches work, with a focus on Hierarchical Navigable Small World Graph (HNSW)
-
-10:40 - 11:10 - How the Apache Lucene implementation works
-
-11:10 - 11:30 - Break
-
-11:30 - 12:00 - How the Apache Solr implementation works, with the new field type and query parser introduced
-
-12:00 - 12:35 - How to run KNN queries and how to use it to rerank a first-stage pass
-
-12:35 - 13:05 - Limitations and how to mitigate them
-
-13:05 - 13:20 - Future Works
+For a step-by-step description read our [blog post](https://sease.io/2023/01/apache-solr-neural-search-tutorial.html).
 
 # Requirements:
 
-To replicate this work just install the requirements.txt in your python environment.
+To replicate this tutorial, you need:
+
+- Solr 9.1.1 (download [here](https://solr.apache.org/downloads.html))
+- python 3.8
+- to install the requirements.txt in your python environment
 
 e.g.
 
 using pip
 ```
 pip install -r requirements.txt
-pip install sentence-transformers
-pip install pysolr
 ```
 
 using Conda
 ```
-conda create --name approaching-neural-search-tutorial-22 --file requirements.txt
-conda activate approaching-neural-search-tutorial-22
-conda install -c conda-forge sentence-transformers | pip install sentence-transformers
+conda create --name solr-neural-search-tutorial --file requirements.txt
+conda activate solr-neural-search-tutorial
 ```
+
+## Repository content ##
+- **[from-text-to-vectors](from-text-to-vectors)**: contains the python script to generate vector embeddings
+  - **[documents](from-text-to-vectors/documents)**: contains an example of the MS Marco passage retrieval data (10k)
+  - **[vectors](from-text-to-vectors/vectors)**: contains the vector embeddings obtained from the MS Marco passage retrieval data (10k)
+- **[solr](solr)**: contains the python script to index batches of documents to Solr at once from a file and a JSON file containing a Postman collection of Solr requests for neural search
+  - **[ms-marco](solr/ms-marco)**: contains Solr configuration files
+
+## Pipeline commands: ##
+To run Solr and create the ms-marco collection:
+
+````
+cd solr-9.1.1
+bin/solr start
+bin/solr create -c ms-marco
+````
+
+To produce vectors externally:
+
+````
+cd from-text-to-vectors
+python batch-sentence-transformers.py "./documents/documents_10k.tsv" "./vectors/vectors_10k.tsv"
+````
+
+To index batches of documents to Solr:
+
+````
+cd solr
+python solr-indexer.py "../from-text-to-vectors/documents/documents_10k.tsv" "../from-text-to-vectors/vectors/vectors_10k.tsv"
+````
+
+To encode a query:
+
+````
+cd from-text-to-vectors
+python single-sentence-transformers.py
+````
+
+To run knn queries import the following file into Postman to test and interact with Solr:
+
+````
+Solr_Neural_Search_Tutorial.postman_collection.json
+````
